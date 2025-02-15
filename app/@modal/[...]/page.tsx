@@ -6,7 +6,7 @@ export default async function ({
   const selectedModal = (await searchParams)['modal'];
 
   try {
-    return <>{await (await import(`../_modals/${selectedModal}`)).default()}</>;
+    return <>{await (await import(`@/modals/${selectedModal}`)).default()}</>;
   } catch (e) {
     return <></>;
   }
