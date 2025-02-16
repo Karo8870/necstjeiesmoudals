@@ -1,3 +1,5 @@
+import ModalWrapper from '@/modal-wrapper';
+
 export default async function ({
   searchParams
 }: {
@@ -5,9 +7,5 @@ export default async function ({
 }) {
   const selectedModal = (await searchParams)['modal'];
 
-  try {
-    return <>{await (await import(`@/modals/${selectedModal}`)).default()}</>;
-  } catch (e) {
-    return <></>;
-  }
+  return <ModalWrapper selectedModal={selectedModal} />;
 }
