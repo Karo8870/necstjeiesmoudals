@@ -1,6 +1,6 @@
 'use client';
 
-import { lazy, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
 export default function ModalWrapper({
   selectedModal
@@ -9,11 +9,11 @@ export default function ModalWrapper({
 }) {
   if (!selectedModal) return null;
 
-  const ModalComponent = lazy(() => import(`./modals/${selectedModal}`));
+  const ModalComponent = dynamic(() => import(`./modals/${selectedModal}`), {
+    loading() {
+      return <>loding</>;
+    }
+  });
 
-  return (
-    <Suspense fallback={null}>
-      <ModalComponent />
-    </Suspense>
-  );
+  return <ModalComponent />;
 }
